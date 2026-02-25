@@ -1,0 +1,302 @@
+:root {
+    --primary: #ff6b00;
+    --bg: #0a0a0a;
+    --card: #161616;
+    --text: #ffffff;
+    --dim: #888888;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* { box-sizing: border-box; transition: all 0.3s ease; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    background: linear-gradient(45deg, var(--primary), #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.search-box input {
+    background: var(--card);
+    border: 1px solid var(--glass);
+    padding: 12px 20px;
+    border-radius: 30px;
+    color: white;
+    width: 250px;
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ================= GRID ================= */
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px;
+}
+
+/* ================= INVISIBLE CARDS ================= */
+
+.player-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.player-card:hover {
+    transform: scale(1.03);
+}
+
+/* ================= IMAGE FULL SHOW ================= */
+
+.image-container {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.player-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* prevents cropping */
+}
+
+/* Jersey badge stays */
+.jersey-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* ================= PLAYER INFO ================= */
+
+.player-info {
+    padding: 10px 5px;
+    text-align: center;
+    background: transparent;
+}
+
+.position-tag {
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ================= MODAL MAIN ================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #111;
+    width: 90%;
+    max-width: 950px;
+    border-radius: 25px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--glass);
+}
+
+.modal-body {
+    display: flex;
+    width: 100%;
+}
+
+.modal-left {
+    flex: 1;
+    background: #000;
+}
+
+.modal-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-right {
+    flex: 1.3;
+    padding: 45px;
+    overflow-y: auto;
+    max-height: 85vh;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* ================= VITALS GRID ================= */
+
+.modal-vitals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border: 1px solid var(--glass);
+}
+
+.v-item strong {
+    display: block;
+    color: var(--primary);
+    font-size: 0.65rem;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.v-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.v-item.full-row {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--glass);
+    padding-bottom: 12px;
+    margin-bottom: 5px;
+}
+
+.v-item.full-row span {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.ach-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.ach-item {
+    background: rgba(255,179,0,0.1);
+    border: 1px solid rgba(255,179,0,0.4);
+    color: #ffb300;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* ================= BULLETS ================= */
+
+.modal-section {
+    margin-bottom: 30px;
+}
+
+.modal-section strong {
+    color: var(--primary);
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.career-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.career-bullets li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #eee;
+}
+
+.career-bullets li::before {
+    content: "▹";
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 850px) {
+    .modal-content,
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-left {
+        height: 350px;
+        flex: none;
+    }
+
+    .modal-vitals {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
