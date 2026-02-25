@@ -7,7 +7,10 @@
     --glass: rgba(255, 255, 255, 0.05);
 }
 
-* { box-sizing: border-box; transition: all 0.3s ease; }
+* {
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
 
 body {
     background-color: var(--bg);
@@ -15,6 +18,8 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
 }
+
+/* ================= CONTAINER ================= */
 
 .container {
     max-width: 1200px;
@@ -62,63 +67,85 @@ h1 {
     gap: 40px;
 }
 
-/* ================= INVISIBLE CARDS ================= */
+/* ================= PLAYER CARD ================= */
 
 .player-card {
-    background: transparent;
-    border: none;
-    box-shadow: none;
     cursor: pointer;
 }
 
-.player-card:hover {
-    transform: scale(1.03);
-}
-
-/* ================= IMAGE FULL SHOW ================= */
-
-.image-container {
+.card-body {
     position: relative;
-    height: 340px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
+    height: 390px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #111;
+    border: 2px solid #222;
 }
 
+.card-body:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+/* IMAGE FULL COVER */
 .player-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* prevents cropping */
+    object-fit: cover;
 }
 
-/* Jersey badge stays */
-.jersey-badge {
+/* ================= CORNER JERSEY BADGE ================= */
+
+.corner-number {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--primary);
-    padding: 5px 12px;
-    border-radius: 8px;
+    top: 0;
+    right: 0;
+    width: 110px;
+    height: 75px;
+    background: white;
+    color: black;
     font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-left: 3px solid black;
+    border-bottom: 3px solid black;
+    border-bottom-left-radius: 20px;
+
+    z-index: 3;
 }
 
-/* ================= PLAYER INFO ================= */
+/* ================= BOTTOM INFO BAR ================= */
 
-.player-info {
-    padding: 10px 5px;
+.bottom-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 18px 10px;
     text-align: center;
-    background: transparent;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.95),
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.2),
+        transparent
+    );
 }
 
-.position-tag {
-    color: var(--primary);
-    font-size: 0.7rem;
+.player-name {
     font-weight: bold;
-    text-transform: uppercase;
+    font-size: 1.1rem;
 }
 
-/* ================= MODAL MAIN ================= */
+.player-team {
+    font-size: 0.85rem;
+    color: var(--dim);
+}
+
+/* ================= MODAL ================= */
 
 .modal-overlay {
     position: fixed;
@@ -286,6 +313,12 @@ h1 {
 /* ================= MOBILE ================= */
 
 @media (max-width: 850px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     .modal-content,
     .modal-body {
         flex-direction: column;
